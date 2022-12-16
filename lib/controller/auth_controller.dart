@@ -99,17 +99,22 @@ class AuthController extends GetxController{
 
 
 
-  uploadProfileData(String imageUrl, String firstName, String lastName,
-      String mobileNumber, String dob, String gender) {
+  uploadProfileData(String imageUrl, String firstName,
+      String mobileNumber, String dob, String gender, String age,
+      String shortDetails, String longDetails, String Charges) {
 
     String uid = FirebaseAuth.instance.currentUser!.uid;
 
     FirebaseFirestore.instance.collection('counsellor_anonymous').doc(uid).set({
       'image': imageUrl,
       'first': firstName,
-      'last': lastName,
       'dob': dob,
-      'gender': gender
+      'gender': gender,
+      'mobileNumber': mobileNumber,
+      'age': age,
+      'shortDetails': shortDetails,
+      'longDetails': longDetails,
+      'charges': Charges
     }).then((value) {
       isProfileInformationLoading(false);
       Get.offAll(()=> HomeScreen());

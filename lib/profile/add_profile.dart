@@ -33,9 +33,12 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
   }
 
   TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
   TextEditingController mobileNumberController = TextEditingController();
   TextEditingController dob = TextEditingController();
+  TextEditingController age = TextEditingController();
+  TextEditingController shortDetails = TextEditingController();
+  TextEditingController longDetails = TextEditingController();
+  TextEditingController Charges = TextEditingController();
 
   imagePickDialog() {
     showDialog(
@@ -181,22 +184,11 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
                   height: Get.width * 0.1,
                 ),
                 textField(
-                    text: 'First Name',
+                    text: 'Name',
                     controller: firstNameController,
                     validator: (String input) {
                       if (firstNameController.text.isEmpty) {
                         Get.snackbar('Warning', 'First Name is required.',
-                            colorText: Colors.white,
-                            backgroundColor: Colors.blue);
-                        return '';
-                      }
-                    }),
-                textField(
-                    text: 'Last Name',
-                    controller: lastNameController,
-                    validator: (String input) {
-                      if (lastNameController.text.isEmpty) {
-                        Get.snackbar('Warning', 'Last Name is required.',
                             colorText: Colors.white,
                             backgroundColor: Colors.blue);
                         return '';
@@ -216,6 +208,50 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
 
                       if (mobileNumberController.text.length < 10) {
                         Get.snackbar('Warning', 'Enter valid phone number.',
+                            colorText: Colors.white,
+                            backgroundColor: Colors.blue);
+                        return '';
+                      }
+                    }),
+                textField(
+                    text: 'Age',
+                    controller: age,
+                    validator: (String input) {
+                      if (age.text.isEmpty) {
+                        Get.snackbar('Warning', 'Age is required.',
+                            colorText: Colors.white,
+                            backgroundColor: Colors.blue);
+                        return '';
+                      }
+                    }),
+                textField(
+                    text: 'Short Details',
+                    controller: shortDetails,
+                    validator: (String input) {
+                      if (shortDetails.text.isEmpty) {
+                        Get.snackbar('Warning', 'Short Details is required.',
+                            colorText: Colors.white,
+                            backgroundColor: Colors.blue);
+                        return '';
+                      }
+                    }),
+                textField(
+                    text: 'Long Details',
+                    controller: longDetails,
+                    validator: (String input) {
+                      if (longDetails.text.isEmpty) {
+                        Get.snackbar('Warning', 'Long Details is required.',
+                            colorText: Colors.white,
+                            backgroundColor: Colors.blue);
+                        return '';
+                      }
+                    }),
+                textField(
+                    text: 'Charges in rupees',
+                    controller: Charges,
+                    validator: (String input) {
+                      if (Charges.text.isEmpty) {
+                        Get.snackbar('Warning', 'Charges is required.',
                             colorText: Colors.white,
                             backgroundColor: Colors.blue);
                         return '';
@@ -319,7 +355,10 @@ class _AddProfileScreenState extends State<AddProfileScreen> {
 
                       String imageUrl = await authController!.uploadImageToFirebaseStorage(profileImage!);
 
-                      authController!.uploadProfileData(imageUrl, firstNameController.text.trim(), lastNameController.text.trim(), mobileNumberController.text.trim(), dob.text.trim(), selectedRadio ==0 ? "Male": "Female");
+                      authController!.uploadProfileData(imageUrl, firstNameController.text.trim(),
+                          mobileNumberController.text.trim(), dob.text.trim(),
+                          age.text.trim(), shortDetails.text.trim(), Charges.text.trim(),
+                          longDetails.text.trim(), selectedRadio ==0 ? "Male": "Female");
 
                     },
                   ),
