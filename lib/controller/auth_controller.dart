@@ -100,8 +100,8 @@ class AuthController extends GetxController{
 
 
   uploadProfileData(String imageUrl, String firstName,
-      String mobileNumber, String dob, String gender, String age,
-      String shortDetails, String longDetails, String Charges) {
+      String mobileNumber, String dob, String age, String shortDetails,
+      String Charges , String longDetails, String gender , String uid, String work) {
 
     String uid = FirebaseAuth.instance.currentUser!.uid;
 
@@ -109,8 +109,10 @@ class AuthController extends GetxController{
       'image': imageUrl,
       'first': firstName,
       'dob': dob,
+      'work': work,
       'gender': gender,
       'mobileNumber': mobileNumber,
+      'uid': uid,
       'age': age,
       'shortDetails': shortDetails,
       'longDetails': longDetails,
