@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:path/path.dart' as Path;
+import 'package:unt_02/views/Anonynmous_main_screen.dart';
 
 import '../profile/add_profile.dart';
 import '../views/home_screen.dart';
@@ -22,7 +23,7 @@ class AuthController extends GetxController{
         email: email!,
         password: password!).then((value) {
       isLoading(false);
-      Get.to(()=> HomeScreen());
+      Get.to(()=> screen2());
     }).catchError((e){
       print("Error in login $e");
       isLoading(false);
@@ -70,7 +71,7 @@ class AuthController extends GetxController{
     FirebaseAuth.instance.signInWithCredential(credential).then((value) {
       isLoading(false);
 
-      Get.to(() => HomeScreen());
+      Get.to(() => screen2());
     }).catchError((e) {
       isLoading(false);
       print("Error is $e");
@@ -119,7 +120,7 @@ class AuthController extends GetxController{
       'charges': Charges
     }).then((value) {
       isProfileInformationLoading(false);
-      Get.offAll(()=> HomeScreen());
+      Get.offAll(()=> screen2());
     });
 
   }
